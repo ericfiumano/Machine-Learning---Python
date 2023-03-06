@@ -1,0 +1,39 @@
+#Data Analysis with Python
+
+
+ds = pd.read_csv('directoryNomefile')
+X = ds.iloc[:, 1:2].values #prima colonna come x e seconda colonna come y
+y = ds.iloc[:, 1].values 
+ds.head() # stampa le prime 5 righe
+ds.describe() # stampa le statistiche principali
+
+#Regressions
+correlations = pd.plotting.scatter_matrix(ds, figsize=(12, 12)) #stampa la scatter matrix delle correlazioni tra variabili
+X = ds[['colonna1', 'colonna2']] #se più di un campo, uso un array e quindi doppia parentesi quadra
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) #SCIKIT suddivide dataset X Y usando il 20% dei dati per il test (e 80% in train); generazione numeri casuali 42...stessa seq di numeri casuali così rimane analogo il reiteramento 
+from sklearn.linear_model import LinearRegression
+    model = linearRegression() 
+    model.fit(X_train, y_train)
+    print(model.coef_)  #stampa coeff angolare
+    print(model.intercept_) #stampa offset dall'origine 
+from matplotlib import pyplot as plt
+    results = model.predict(X_test)
+    plt.scatter(y_test, results) #grafico risultati rispetto a y test reale e x predetto
+#Metrica di bontà del prediction model
+    print('Errore assoluto medio:', mean_absolute_error(y_test, results)) 
+    print('Errore massimo:', max_error(y_test, results)) 
+    print('Varianza:', explained_variance_score(y_test, results)) 
+    
+
+#Regressione lineare polinomiale tecnica di Augmentation (quando trattasi di curve) Se ci sono outliers, la potenza di calcolo necessaria è molta (- performance, quindi)
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PlolynomialFeatures
+poly_reg = PolynomialFeatures(degree=4) #trasformaz features costruendo polinomio di 4 grado
+X_poly = poly_reg.fit_transform(X) #per ogni X fa un polinomio di 4 grado...il risultato va in X_poly
+#diamo in pasto al modello di regressione un polinomio e non la X originale
+pol_reg = LinearRegression()
+pol_reg.fit(X_poly, y)  #visualizzando, noto che copre meglio il dataset.
+#test di predizione di un valore nuovo non presente --> il modello Polinomiale vince
