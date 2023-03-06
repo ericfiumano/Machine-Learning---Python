@@ -1,0 +1,39 @@
+1- Forward Propagation che usa una [Decision rule di Regressione] --> per trovare y.pred
+2- Calcolo L (MSE)
+3- Back Propagation [Decision rule usando il contributo dei parametri] --> obiettivo è aggiornare i parametri --> nuovo m<oppure θ> e nuovo b<bias>
+	b.new = b.old - R*dparziale di b
+	m.new = m.old - R*dparziale di m   (dove R è un iperparametro "learning rate")   Negativo per andare nella direzione opposta al gradiente per minimizzare la funzione    
+
+
+y = mc + c  
+y.pred = θ0 + θ1x1 Retta predittiva 
+y θ0 + θ1x1 + θ2x1"2 Curva predittiva
+
+θ0: bias = discostamento dall'origine --> è il minimo che deve dare il modello qualora il resto facesse zero
+X= θ1 = inclinazione retta 
+
+[Regressione Lineare Multivariata] 
+Predice un valore continuo basandosi su un certo addestramento
+ottimizzare per parametri θ0, θ1, θ2, ... θn (chiamati anche m1, m2...) 
+			per feature x1, x2, x3,...xn 
+Per esempio: x1: age, x2: height, x3: peso 
+
+#Algoritmo [Discesa del Gradiente]: processo iterativo per trovare i parametri derivando parzialmente per ognuno di essi; farli avvicinare alla soluzione migliore (problema di ottimizazzione, di ricerca di minimo)
+
+Il modello siffatto viene addestrato affinchè porti quanto più verosimilmente all'output già fornito dai dati reali, in modo da poter predire quelli futuri e sconosciuti
+
+[MSE: Mean Squared Error] - Loss function (Funzione di costo)
+Se alto: male, errore predittivo alto 
+Viene ripetuto da 1 a 3 volte (ci fermiamo quando siam soddisfatti o quando  m e b variano troppo poco)
+
+
+[Polinomiale - quando la regressione Lineare non ci soddisfa] - Data Augmentation
+Aiuta a mappare meglio i valori perchè tieni presente curve di 2, 3 e 4° grado e le differenze tra le diverse scale, permettendo un modello + efficiente
+Si supera il limite del 2 grado che esclude le negative
+3° è una S e mantiene segni negativi (linea su 3 dimensioni)
+4°
+Si tirano fuori info altrimenti nasocsti perchè tira fuori il dato in 4 scale diverse
+Facciamo esprimere i dati su più dimensioni
+
+
+Seno e Coseno per ciclicità - Dove hai il tempo. Due dimensioni per descrivere un cerchio in ore (1-12, 13-24)
